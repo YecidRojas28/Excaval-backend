@@ -1,12 +1,13 @@
-import { v4 as uuidv4 } from 'uuid';
-import { Table, Column, DataType, ForeignKey, Model, AllowNull, PrimaryKey, Unique, BelongsTo } from "sequelize-typescript";
 import Role from './Role';
+import { v4 as uuidv4 } from 'uuid';
+import { IUser } from '../interfaces/UserInterface';
+import { Table, Column, DataType, ForeignKey, Model, AllowNull, PrimaryKey, Unique, BelongsTo } from "sequelize-typescript";
 
 @Table({
     tableName: 'users',
     timestamps: true
 })
-class User extends Model {
+class User extends Model<IUser> {
     @PrimaryKey
     @Column({
         type: DataType.UUID,

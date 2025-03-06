@@ -1,0 +1,14 @@
+{
+  "development": {
+    "dialect": "sqlite",
+    "storage": "./excaval.sqlite"
+  },
+  "test": {
+    "dialect": "sqlite",
+    "storage": "./excaval_test.sqlite"
+  },
+  "production": {
+    "dialect": "sqlite",
+    "storage": "./excaval_production.sqlite"
+  }
+}

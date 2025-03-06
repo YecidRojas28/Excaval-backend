@@ -2,6 +2,9 @@ import morgan from 'morgan';
 import colors from 'colors';
 import express from 'express';
 import { db } from './config/db';
+import permissions from './routes/permissions'
+import roles from './routes/roles'
+import users from './routes/users'
 
 async function connectDB(){
     try {
@@ -18,5 +21,11 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
+
+//Rutas
+
+app.use('/permissions', permissions)
+app.use('/roles', roles)
+app.use('/users', users)
 
 export default app;

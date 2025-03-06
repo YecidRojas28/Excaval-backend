@@ -1,14 +1,14 @@
-import User from "./User";
 import { v4 as uuidv4 } from 'uuid';
 import RolePermission from './RolePermision';
-import { IRole } from '../interfaces/RoleInterface';
-import { Table, Column, DataType, HasMany, Model, AllowNull, PrimaryKey } from "sequelize-typescript";
+import { IPermission } from '../interfaces/PermissionInterface';
+import { Table, Column, DataType, Model, AllowNull, PrimaryKey, HasMany } from "sequelize-typescript";
 
 @Table({
-    tableName: 'roles',
+    tableName: 'permissions',
     timestamps: true
 })
-class Role extends Model<IRole> {
+
+class Permission extends Model<IPermission> {
     @PrimaryKey
     @Column({
         type: DataType.UUID,
@@ -19,19 +19,19 @@ class Role extends Model<IRole> {
     @AllowNull(false)
     @Column({
         type: DataType.STRING,
-        unique: true 
+        unique: true
     })
     declare name: string;
+
     @AllowNull(false)
     @Column({
         type: DataType.STRING
     })
-    declare description: string
-    @HasMany(() => User)
-    declare users: User[];
+    declare description: string;
 
     @HasMany(() => RolePermission)
     declare rolePermissions: RolePermission[];
+
 }
 
-export default Role;
+export default Permission;
