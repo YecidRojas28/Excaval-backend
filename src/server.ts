@@ -5,6 +5,8 @@ import { db } from './config/db';
 import permissions from './routes/permissions'
 import roles from './routes/roles'
 import users from './routes/users'
+import workHours from './routes/workhours'
+import salaries from './routes/salaries'
 
 async function connectDB(){
     try {
@@ -27,5 +29,7 @@ app.use(express.json());
 app.use('/permissions', permissions)
 app.use('/roles', roles)
 app.use('/users', users)
+app.use('/workhours', workHours)
+app.use('/salaries', salaries)
 
 export default app;

@@ -1,5 +1,6 @@
 import { SalaryRepository } from '../repositories/SalaryRepository';
 import { ISalary } from '../interfaces/SalaryInterface';
+import { v4 as uuidv4 } from 'uuid';
 
 const salaryRepository = new SalaryRepository(); // Instanciación
 
@@ -10,7 +11,7 @@ export class SalaryService {
             salary.hourlyRate = hourlyRate;
             return await salary.save();
         } else {
-            return await salaryRepository.createSalary({ id: '', userId, hourlyRate });
+            return await salaryRepository.createSalary({ id: uuidv4(), userId, hourlyRate });
         }
     }
 

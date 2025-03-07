@@ -1,20 +1,30 @@
-import { IWorkHour } from "../interfaces/WorkHourInterface";
-import { WorkHourRepository } from "../repositories/WorkHourRepository";
+import { WorkHourRepository } from '../repositories/WorkHourRepository';
+import { IWorkHour } from '../interfaces/WorkHourInterface';
 
-const workHourRepository = new WorkHourRepository();
+export class WorkHourService {
+    private workHourRepository: WorkHourRepository;
 
-export class WorkHourService{
-    async registerWorkHour(userId: string, hoursWorked: number, isAbsent: boolean): Promise<IWorkHour>{
-        const workHourData: IWorkHour = { id:'', userId, hoursWorked, isAbsent, date: new Date() };
-        return await workHourRepository.createWorkHour(workHourData);
+    constructor() {
+        this.workHourRepository = new WorkHourRepository();
     }
-    async getTotalHours(userId: string): Promise<number>{
-        return await workHourRepository.calculateTotalHours(userId);
+
+    async createWorkHour(workHourData: IWorkHour) {
+        return await this.workHourRepository.createWorkHour(workHourData);
     }
-    async updateWorkHour(id: string, workHourData: Partial<IWorkHour>): Promise<IWorkHour | null>{
-        return await workHourRepository.updateWorkHour(id, workHourData);
+
+    async getWorkHoursByUser(userId: string) {
+        return await this.workHourRepository.getWorkHoursByUser(userId);
     }
-    async deleteWorkHour(id: string): Promise<void>{
-        await workHourRepository.deleteWorkHour(id);
+
+    async calculateTotalHours(userId: string) {
+        return await this.workHourRepository.calculateTotalHours(userId);
+    }
+
+    async updateWorkHour(id: string, workHourData: Partial<IWorkHour>) {
+        return await this.workHourRepository.updateWorkHour(id, workHourData);
+    }
+
+    async deleteWorkHour(id: string) {
+        return await this.workHourRepository.deleteWorkHour(id);
     }
 }
